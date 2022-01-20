@@ -1,0 +1,21 @@
+
+{ 
+  "parseOptions": {},
+  "translation": {
+    "OrderID": {
+      "type": "Integer",
+      "template": "<%= key['Order Number']%>"
+    },
+    "OrderDate": {
+      "type": "DateTime",
+      "template": "<%= new Date(Year + '/' + Month + '/' + Day).toISOString() %>"
+    },
+    "ProductId": "<%= key['Product Number']%>",
+    "ProductName": "<%= key['Product Name']%>",
+    "Quantity": {
+      "type": "BigDecimal",
+      "template": "<%= console.log(process) %>"
+    },
+    "Unit": "kg"
+  }
+}
