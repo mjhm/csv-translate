@@ -2,20 +2,26 @@
 { 
   "parseOptions": {},
   "translation": {
+    "//" :  "Comments are delimited by a '//' key",
+    "//" :  "Multiple comments ok",
     "OrderID": {
       "type": "Integer",
-      "template": "<%= key['Order Number']%>"
+      "template": "{{'Order Number'}}"
     },
     "OrderDate": {
       "type": "DateTime",
-      "template": "<%= new Date(Year + '/' + Month + '/' + Day).toISOString() %>"
+      "template": "{{#date}}{{Year}}/{{Month}}/{{Day}}{{/date}}"
     },
-    "ProductId": "<%= key['Product Number']%>",
-    "ProductName": "<%= key['Product Name']%>",
+    "ProductId": "{{'Product Number'}}",
+    "ProductName": "{{'Product Name'}}",
     "Quantity": {
       "type": "BigDecimal",
-      "template": "<%= console.log(process) %>"
+      "template": "{{Count}}"
     },
     "Unit": "kg"
+  },
+  "output": {
+    "format": "csv",
+    "options": {}
   }
 }

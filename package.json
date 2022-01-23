@@ -5,6 +5,11 @@
   "author": "John McLaughlin",
   "license": "None",
   "private": true,
+  "scripts": {
+    "test": "jest",
+    "pwd": "pwd",
+    "sample": "node cli.js -c ./test/orders.config < ./test/orders.csv > ./test/tmp.csv ; cat ./test/tmp.csv"
+  },
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
@@ -20,6 +25,8 @@
   },
   "dependencies": {
     "commander": "^8.3.0",
+    "date-fns": "^2.28.0",
+    "handlebars": "^4.7.7",
     "lodash": "^4.17.21",
     "papaparse": "^5.3.1"
   }

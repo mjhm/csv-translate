@@ -1,5 +1,4 @@
-# create-originate-app
-vendor/
+
 
 # logs
 logs
@@ -12,30 +11,16 @@ yarn-error.log*
 # node
 node_modules/
 
+# test
+tmp.*
+
 # eslint
 .eslintcache
 
 # dotenv
 .env
 
-# typescript
-ignored/
-*.tsbuildinfo
-
-# python
-*.pyc
-
-# webpack
-packages/backend/public/index.html
-*.webpack.js
-*.webpack.js.map
-
 # local editors
 .vscode
 .DS_Store
 
-# terraform
-**/.terraform/*
-*.tfstate
-*.tfstate.*
-!terraform/remote_state/tfstate/terraform.tfstate
