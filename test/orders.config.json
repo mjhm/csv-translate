@@ -1,25 +1,36 @@
 
 { 
+  "//a": "a comment is delimited by a '//' prefixed key",
+  "//b": "comments are allowed both here and in the translation block",
   "parseOptions": {},
   "translation": {
-    "//" :  "Comments are delimited by a '//' key",
-    "//" :  "Multiple comments ok",
+    "// keys": "in the translation are the output columns",
+    "// note": "'Order Number' input key needs to be single quoted since it has a space",
+  
     "OrderID": {
       "type": "Integer",
       "template": "{{'Order Number'}}"
     },
+  
+    "// date helper": "is defined to convert the Y/M/D to an ISO date string",
     "OrderDate": {
       "type": "DateTime",
       "template": "{{#date}}{{Year}}/{{Month}}/{{Day}}{{/date}}"
     },
+  
+    "// string values": "for the column config implictly type the output as plain strings",
     "ProductId": "{{'Product Number'}}",
     "ProductName": "{{'Product Name'}}",
+  
     "Quantity": {
       "type": "BigDecimal",
       "template": "{{Count}}"
     },
+  
+    "// constant strings": "will trivially be the same value in every row",
     "Unit": "kg"
   },
+  "// output": "currently unused",
   "output": {
     "format": "csv",
     "options": {}

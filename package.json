@@ -7,7 +7,6 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "pwd": "pwd",
     "sample": "node cli.js -c ./test/orders.config < ./test/orders.csv > ./test/tmp.csv ; cat ./test/tmp.csv"
   },
   "devDependencies": {
@@ -25,7 +24,6 @@
   },
   "dependencies": {
     "commander": "^8.3.0",
-    "date-fns": "^2.28.0",
     "handlebars": "^4.7.7",
     "lodash": "^4.17.21",
     "papaparse": "^5.3.1"

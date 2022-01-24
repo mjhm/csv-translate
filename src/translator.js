@@ -23,7 +23,7 @@ class Translator {
       throw new Error(`config translation object doesn't have any keys`)
     }
 
-    const translation = _.omit(config.translation, '//') // ignoring config comments
+    const translation = _.omitBy(config.translation, (v, k) => /^\/\//.test(k)) // ignoring config comments
     this.outHeader = Object.keys(translation)
 
     this.translators = _.mapValues(translation, (v, k) => {
@@ -64,6 +64,7 @@ class Translator {
     this.errors.push(...errors)
     this.lineCount += 1
     const outObj = _.mapValues(this.translators, (tr) => {
+      // Here is where the inObj line is converted to a translated value.
       const translated = tr.translator(inObj)
       if (!validators[tr.type](translated)) {
         this.errors.push(

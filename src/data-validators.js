@@ -1,12 +1,15 @@
 const _ = require('lodash')
 
 const checkMaxValue = (testThis, maxVal) => {
+  // pads the `testThis` value with zeros so that they can be
+  // compared as strings without converting to an integer.
   const padded = ('00000000000000000000' + testThis).slice(-maxVal.length)
   return padded <= maxVal
 }
 
 module.exports.validators = {
   String: _.isString.bind(_),
+
   Integer: (val) => {
     const cleanVal = val.replace(/[,_]/, '')
     if (!/^-?\d+$/.test(cleanVal)) return false
@@ -15,7 +18,9 @@ module.exports.validators = {
     } else if (!checkMaxValue(cleanVal, '2147483647')) return false
     return _.isString(val)
   },
+
   DateTime: (val) => {
+    // Checks that it is ISO formatted.
     if (!/\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\dZ/.test(val)) return false
     try {
       if (new Date(val).toISOString() !== val) return false
@@ -24,6 +29,7 @@ module.exports.validators = {
     }
     return true
   },
+
   BigDecimal: (val) => {
     const cleanVal = val.replace(/[,_]/, '')
     return /^-?\d+(\.\d*)?$/.test(cleanVal) || /^-?\.\d+$/.test(cleanVal)

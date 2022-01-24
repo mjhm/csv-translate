@@ -74,10 +74,9 @@ describe('Translator translation', () => {
     inStream.end()
     await translator.parse()
     expect(outStream.buffer).toEqual('OrderNumber\n1000\n1001\n')
-    // console.error('outStream', outStream.buffer)
   })
 
-  test('validate Integer', async () => {
+  test('validate simple translation of Integer', async () => {
     inStream.write(testData)
     const translator = new Translator(
       {
@@ -91,7 +90,26 @@ describe('Translator translation', () => {
     inStream.end()
     await translator.parse()
     expect(outStream.buffer).toEqual('OrderNumber\n1000\n1001\n')
-    // console.error('outStream', outStream.buffer)
+  })
+
+  test('validation error results', async () => {
+    inStream.write(testData)
+    const translator = new Translator(
+      {
+        translation: {
+          ProductName: { type: 'Integer', template: `{{'Product Name'}}` }
+        }
+      },
+      inStream,
+      outStream
+    )
+    inStream.end()
+    await translator.parse()
+    expect(outStream.buffer).toEqual('ProductName\nArugola\nIceberg lettuce\n')
+    expect(translator.errors).toEqual([
+      "line: 1 value Arugola doesn't match type Integer",
+      "line: 2 value Iceberg lettuce doesn't match type Integer"
+    ])
   })
 })
 
