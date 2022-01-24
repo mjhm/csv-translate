@@ -34,7 +34,7 @@ The parsing of the incoming JSON is via PapaParse. This has lots of flexibility 
 
 ## Config File
 
-See `test/orders.config.json` for example and details.
+See `test/orders.config.json` for example and details. See [Handlbars](https://handlebarsjs.com/guide/) documentation for details on the template syntax and how to create helper functions.
 
 ## Assumptions and Simplifications
 
@@ -46,9 +46,10 @@ See `test/orders.config.json` for example and details.
 
 Most of the next steps depend on product priorities and specific applications of the code. My best guesses for next steps:
 1. It would be that it would be handy to have a SQL output option.
-2. Review details of the PapaParse input and output config to see if that matches the real world expectations.
-3. Convert to TypeScript.
-4. More testing for real world situations.
+2. Add additonal type validations as needed.
+3. Review details of the PapaParse input and output config to see if that matches the real world expectations.
+4. Convert to TypeScript.
+5. More testing for real world situations.
    
 
 

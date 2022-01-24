@@ -20,7 +20,7 @@ module.exports.validators = {
   },
 
   DateTime: (val) => {
-    // Checks that it is ISO formatted.
+    // Checks that it is ISO an ISO formatted DateTime
     if (!/\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\dZ/.test(val)) return false
     try {
       if (new Date(val).toISOString() !== val) return false

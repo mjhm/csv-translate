@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "sample": "node cli.js -c ./test/orders.config < ./test/orders.csv > ./test/tmp.csv ; cat ./test/tmp.csv"
+    "sample": "node cli.js -c ./test/orders.config.json < ./test/orders.csv > ./test/tmp.csv ; cat ./test/tmp.csv"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

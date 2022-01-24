@@ -26,6 +26,7 @@ class Translator {
     const translation = _.omitBy(config.translation, (v, k) => /^\/\//.test(k)) // ignoring config comments
     this.outHeader = Object.keys(translation)
 
+    // Error check the config and compile the templates into the translators.
     this.translators = _.mapValues(translation, (v, k) => {
       const columnType = _.isString(v) ? 'String' : v.type
       if (!validTypes.includes(columnType)) {
@@ -43,14 +44,14 @@ class Translator {
       }
     })
 
-    // Parses the file line by line and hands off each line to processors.
+    // When called parses the file line by line and hands off each line to processors.
     this.parser = new Parser(
       this.processHeader.bind(this),
       this.processLine.bind(this),
       config.parseOptions
     )
 
-    // Output is abstracted out so that this is extensible to say writing SQL.
+    // Output is abstracted, so that this is extensible to say writing SQL.
     this.output = new OutputCsv(outStream)
   }
 
@@ -64,7 +65,7 @@ class Translator {
     this.errors.push(...errors)
     this.lineCount += 1
     const outObj = _.mapValues(this.translators, (tr) => {
-      // Here is where the inObj line is converted to a translated value.
+      // Here is where the inObj line is converted to translated values.
       const translated = tr.translator(inObj)
       if (!validators[tr.type](translated)) {
         this.errors.push(
